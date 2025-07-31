@@ -193,47 +193,6 @@ namespace NppDemo.Tests
                     Main.OpenSelectionRememberingForm();
                 messages.Add("open selection remembering form");
                 break;
-            case FileManipulation.SelectWithSelectionRememberingForm:
-                if (Main.selectionRememberingForm == null || Main.selectionRememberingForm.IsDisposed)
-                {
-                    messages.Add($"FAIL: selection remembering form not open when running {command}");
-                    return true;
-                }
-                if (args[0] is string selections)
-                    Main.selectionRememberingForm.SelectionStartEndsBox.Text = selections;
-                Main.selectionRememberingForm.SetSelectionsFromStartEndsButton.PerformClick();
-                messages.Add($"Set selections to \"{Main.selectionRememberingForm.SelectionStartEndsBox.Text}\" with the selection remembering form");
-                break;
-            case FileManipulation.CopySelectionsWithSelectionRememberingForm:
-                if (Main.selectionRememberingForm == null || Main.selectionRememberingForm.IsDisposed)
-                {
-                    messages.Add($"FAIL: selection remembering form not open when running {command}");
-                    return true;
-                }
-                Main.selectionRememberingForm.CopySelectionsToStartEndsButton.PerformClick();
-                // need to do this, otherwise your clipboard will be overwritten
-                lastClipboardValue = Clipboard.GetText();
-                messages.Add("Copied selections to clipboard with selection remembering form");
-                break;
-            case FileManipulation.SaveSelectionsWithSelectionRememberingForm:
-                if (Main.selectionRememberingForm == null || Main.selectionRememberingForm.IsDisposed)
-                {
-                    messages.Add($"FAIL: selection remembering form not open when running {command}");
-                    return true;
-                }
-                Main.selectionRememberingForm.SaveCurrentSelectionsToFileButton.PerformClick();
-                messages.Add("Saved selections to config file with selection remembering form");
-                break;
-            case FileManipulation.LoadSelectionsWithSelectionRememberingForm:
-                if (Main.selectionRememberingForm == null || Main.selectionRememberingForm.IsDisposed)
-                {
-                    messages.Add($"FAIL: selection remembering form not open when running {command}");
-                    return true;
-                }
-                Main.selectionRememberingForm.LoadSelectionsFromFileButton.PerformClick();
-                Main.selectionRememberingForm.SetSelectionsFromStartEndsButton.PerformClick();
-                messages.Add("Loaded selections from config file with selection remembering form");
-                break;
             default:
                 throw new ArgumentException($"Unrecognized command {command}");
             }

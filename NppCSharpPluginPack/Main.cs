@@ -43,7 +43,7 @@ namespace Kbg.NppPluginNET
         private static int firstIndicator = -1;
         private static int lastIndicator = -1;
         // forms
-        public static SelectionRememberingForm selectionRememberingForm = null;
+        public static MarkdownRenderForm selectionRememberingForm = null;
         static internal int IdAboutForm = -1;
         static internal int IdSelectionRememberingForm = -1;
         static internal int IdCloseHtmlTag = -1;
@@ -672,7 +672,7 @@ You will get a compiler error if you do.";
                 Npp.notepad.HideDockingForm(selectionRememberingForm);
             else if (selectionRememberingForm == null || selectionRememberingForm.IsDisposed)
             {
-                selectionRememberingForm = new SelectionRememberingForm();
+                selectionRememberingForm = new MarkdownRenderForm();
                 DisplaySelectionRememberingForm(selectionRememberingForm);
             }
             else
@@ -681,7 +681,7 @@ You will get a compiler error if you do.";
             }
         }
 
-        private static void DisplaySelectionRememberingForm(SelectionRememberingForm form)
+        private static void DisplaySelectionRememberingForm(MarkdownRenderForm form)
         {
             using (Bitmap newBmp = new Bitmap(16, 16))
             {

@@ -100,11 +100,11 @@
     <Compile Include="Forms\PopupDialog.Designer.cs">
       <DependentUpon>PopupDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SelectionRememberingForm.cs">
+    <Compile Include="Forms\MarkdownRenderForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SelectionRememberingForm.Designer.cs">
-      <DependentUpon>SelectionRememberingForm.cs</DependentUpon>
+    <Compile Include="Forms\MarkdownRenderForm.Designer.cs">
+      <DependentUpon>MarkdownRenderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DarkModeTestForm.cs">
       <SubType>Form</SubType>
@@ -200,8 +200,8 @@
     <EmbeddedResource Include="Forms\PopupDialog.resx">
       <DependentUpon>PopupDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SelectionRememberingForm.resx">
-      <DependentUpon>SelectionRememberingForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MarkdownRenderForm.resx">
+      <DependentUpon>MarkdownRenderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DarkModeTestForm.resx">
       <DependentUpon>DarkModeTestForm.cs</DependentUpon>

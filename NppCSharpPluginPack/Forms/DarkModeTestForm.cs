@@ -6,9 +6,9 @@ namespace NppDemo.Forms
 {
     public partial class DarkModeTestForm : FormBase
     {
-        private SelectionRememberingForm selectionRememberingForm;
+        private MarkdownRenderForm selectionRememberingForm;
 
-        public DarkModeTestForm(SelectionRememberingForm selectionRememberingForm) : base(false, false)
+        public DarkModeTestForm(MarkdownRenderForm selectionRememberingForm) : base(false, false)
         {
             InitializeComponent();
             this.selectionRememberingForm = selectionRememberingForm;
