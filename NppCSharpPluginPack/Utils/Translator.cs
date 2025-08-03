@@ -332,9 +332,9 @@ namespace NppDemo.Utils
                 result = false;
             else if (!(atStartup && restoreToEnglish))
                 PluginBase.ChangePluginMenuItemNames(allPluginsMenuHandle, newMenuItemNames);
-            if (Main.selectionRememberingForm != null && !Main.selectionRememberingForm.IsDisposed)
+            if (Main.markdownRenderForm != null && !Main.markdownRenderForm.IsDisposed)
             {
-                TranslateForm(Main.selectionRememberingForm);
+                TranslateForm(Main.markdownRenderForm);
             }
             if (restoreToEnglish) // now that we're done restoring forms to English, we can reset translations to null
                 translations = null;

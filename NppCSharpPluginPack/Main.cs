@@ -19,6 +19,7 @@ using System.Text;
 using System.IO;
 using System.Reflection;
 using NppDemo.JSON_Tools;
+using System.Threading.Tasks;
 
 namespace Kbg.NppPluginNET
 {
@@ -43,7 +44,7 @@ namespace Kbg.NppPluginNET
         private static int firstIndicator = -1;
         private static int lastIndicator = -1;
         // forms
-        public static MarkdownRenderForm selectionRememberingForm = null;
+        public static MarkdownRenderForm markdownRenderForm = null;
         static internal int IdAboutForm = -1;
         static internal int IdSelectionRememberingForm = -1;
         static internal int IdCloseHtmlTag = -1;
@@ -89,7 +90,7 @@ namespace Kbg.NppPluginNET
             // the "&" before the "b" means that B is an accelerator key for selecting this option 
             PluginBase.SetCommand(1, Translator.GetTranslatedMenuItem("A&bout"), ShowAboutForm); IdAboutForm = 1;
             PluginBase.SetCommand(2, Translator.GetTranslatedMenuItem("&Settings"), OpenSettings);
-            PluginBase.SetCommand(3, Translator.GetTranslatedMenuItem("Selection &Remembering Form"), OpenSelectionRememberingForm); IdSelectionRememberingForm = 3;
+            PluginBase.SetCommand(3, Translator.GetTranslatedMenuItem("Selection &Remembering Form"), OpenMarkdownRenderForm); IdSelectionRememberingForm = 3;
             PluginBase.SetCommand(4, Translator.GetTranslatedMenuItem("Run &tests"), TestRunner.RunAll);
             
             // this inserts a separator
@@ -253,10 +254,10 @@ namespace Kbg.NppPluginNET
         static internal void PluginCleanUp()
         {
             // dispose of any forms
-            if (selectionRememberingForm != null && !selectionRememberingForm.IsDisposed)
+            if (markdownRenderForm != null && !markdownRenderForm.IsDisposed)
             {
-                selectionRememberingForm.Close();
-                selectionRememberingForm.Dispose();
+                markdownRenderForm.Close();
+                markdownRenderForm.Dispose();
             }
             isShuttingDown = true;
         }
@@ -661,27 +662,29 @@ You will get a compiler error if you do.";
         /// </summary>
         public static void RestyleEverything()
         {
-            if (selectionRememberingForm != null && !selectionRememberingForm.IsDisposed)
-                FormStyle.ApplyStyle(selectionRememberingForm, settings.use_npp_styling);
+            if (markdownRenderForm != null && !markdownRenderForm.IsDisposed)
+                FormStyle.ApplyStyle(markdownRenderForm, settings.use_npp_styling);
         }
 
-        public static void OpenSelectionRememberingForm()
+        public static void OpenMarkdownRenderForm()
         {
-            bool wasVisible = selectionRememberingForm != null && selectionRememberingForm.Visible;
+            bool wasVisible = markdownRenderForm != null && markdownRenderForm.Visible;
             if (wasVisible)
-                Npp.notepad.HideDockingForm(selectionRememberingForm);
-            else if (selectionRememberingForm == null || selectionRememberingForm.IsDisposed)
+                Npp.notepad.HideDockingForm(markdownRenderForm);
+            else if (markdownRenderForm == null || markdownRenderForm.IsDisposed)
             {
-                selectionRememberingForm = new MarkdownRenderForm();
-                DisplaySelectionRememberingForm(selectionRememberingForm);
+                markdownRenderForm = new MarkdownRenderForm();
+                Task initializeTask = markdownRenderForm.InitializeWebViewAsync();
+                DisplayMarkdownRenderForm(markdownRenderForm);
+                
             }
             else
             {
-                Npp.notepad.ShowDockingForm(selectionRememberingForm);
+                Npp.notepad.ShowDockingForm(markdownRenderForm);
             }
         }
 
-        private static void DisplaySelectionRememberingForm(MarkdownRenderForm form)
+        private static void DisplayMarkdownRenderForm(MarkdownRenderForm form)
         {
             using (Bitmap newBmp = new Bitmap(16, 16))
             {
