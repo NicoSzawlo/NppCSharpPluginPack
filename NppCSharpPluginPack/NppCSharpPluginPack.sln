@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NppCSharpPluginPack", "NppCSharpPluginPack.csproj", "{EB8FC3A3-93E8-457B-B281-FAFA5119611A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkdownToHtmlConverter", "..\MarkdownToHtmlConverter\MarkdownToHtmlConverter.csproj", "{7CE809D2-0A1A-4ACE-8DF8-5AFCBDBEE43F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{EB8FC3A3-93E8-457B-B281-FAFA5119611A}.Release|x64.Build.0 = Release|x64
 		{EB8FC3A3-93E8-457B-B281-FAFA5119611A}.Release|x86.ActiveCfg = Release|x86
 		{EB8FC3A3-93E8-457B-B281-FAFA5119611A}.Release|x86.Build.0 = Release|x86
+		{7CE809D2-0A1A-4ACE-8DF8-5AFCBDBEE43F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7CE809D2-0A1A-4ACE-8DF8-5AFCBDBEE43F}.Debug|x64.Build.0 = Debug|Any CPU
+		{7CE809D2-0A1A-4ACE-8DF8-5AFCBDBEE43F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7CE809D2-0A1A-4ACE-8DF8-5AFCBDBEE43F}.Debug|x86.Build.0 = Debug|Any CPU
+		{7CE809D2-0A1A-4ACE-8DF8-5AFCBDBEE43F}.Release|x64.ActiveCfg = Release|Any CPU
+		{7CE809D2-0A1A-4ACE-8DF8-5AFCBDBEE43F}.Release|x64.Build.0 = Release|Any CPU
+		{7CE809D2-0A1A-4ACE-8DF8-5AFCBDBEE43F}.Release|x86.ActiveCfg = Release|Any CPU
+		{7CE809D2-0A1A-4ACE-8DF8-5AFCBDBEE43F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
