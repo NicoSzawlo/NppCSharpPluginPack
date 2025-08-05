@@ -1,5 +1,5 @@
 # NppMarkdownExplorer
-Notepad++ plugin based on NppCSharpPluginPack
+Notepad++ plugin based on NppCSharpPluginPack by [molsonkiko](https://github.com/molsonkiko)
 
 ## 🚀 Features
 📄 Live Markdown Rendering
