@@ -16,13 +16,13 @@ namespace NppDemo.Forms
     public partial class MarkdownRenderForm : FormBase
     {
         public DarkModeTestForm darkModeTestForm;
-
+        private string page = "<!DOCTYPE html>\\r\\n<html>\\r\\n<head><meta charset=\\\"UTF-8\\\"><title>Preview</title></head><body><h1>My First Heading</h1><p>My first paragraph.</p></body></html>";
+        private string page2 = "<!DOCTYPE html>\\r\\n<html>\\r\\n<head><meta charset=\\\"UTF-8\\\"><title>Preview</title></head><body><h1>My LAST Heading</h1><p>My first paragraph.</p></body></html>";
         public MarkdownRenderForm() : base(false, true)
         {
             InitializeComponent();
             
             darkModeTestForm = null;
-            Test();
             
         }
 
@@ -50,6 +50,8 @@ namespace NppDemo.Forms
                 };
 
                 // Initialization succeeded.
+
+                UpdatePreview(page);
             }
             catch (Exception ex)
             {
@@ -74,9 +76,7 @@ namespace NppDemo.Forms
             // Navigate to the HTML string.
             webView2.CoreWebView2.NavigateToString(markdown);
             System.Diagnostics.Debug.WriteLine($"WebView2 Size: {webView2.Size}");
-            webView2.Invalidate();
             webView2.Refresh();
-            webView2.BringToFront();
         }
 
         // Placeholder for fetching the current file content from Notepad++
@@ -89,17 +89,11 @@ namespace NppDemo.Forms
             return content;
         }
 
-        private void Test()
-        {
-
-            //UpdatePreview(GetCurrentFileContent());
-        }
-
         // Navigates to the URL in the address box when
         // the Go button is clicked.
         private void goButton_Click(object sender, EventArgs e)
         {
-            Test();
+            UpdatePreview(page2);
         }
     }
 }

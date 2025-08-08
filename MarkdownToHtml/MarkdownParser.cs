@@ -14,7 +14,7 @@ namespace MarkdownToHtmlConverter
             char[] chars = markdown.ToCharArray();
             string output = "";
             int runningCounter = 0;
-            List<MarkdownElement> elements = new();
+            List<MarkdownElement> elements = new List<MarkdownElement>();
             while(runningCounter < chars.Length)
             {
                 elements.Add(IdentifyElement(chars, out runningCounter));

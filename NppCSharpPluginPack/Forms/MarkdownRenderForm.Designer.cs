@@ -92,6 +92,7 @@ namespace NppDemo.Forms
             // 
             this.ClientSize = new System.Drawing.Size(948, 478);
             this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.webView2);
             this.Name = "MarkdownRenderForm";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
