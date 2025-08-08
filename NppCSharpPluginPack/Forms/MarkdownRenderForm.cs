@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+//using MarkdownToHtmlConverter;
 
 namespace NppDemo.Forms
 {
@@ -90,7 +91,8 @@ namespace NppDemo.Forms
 
         private void Test()
         {
-            UpdatePreview(GetCurrentFileContent());
+
+            //UpdatePreview(GetCurrentFileContent());
         }
 
         // Navigates to the URL in the address box when

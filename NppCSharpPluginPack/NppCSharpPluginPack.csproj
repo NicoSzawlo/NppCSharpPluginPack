@@ -75,6 +75,9 @@
     <RestorePackagesPath>$(MSBuildProjectDirectory)\packages</RestorePackagesPath>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Markdig">
+      <Version>0.41.3</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Web.WebView2">
       <Version>1.0.3351.48</Version>
     </PackageReference>
@@ -229,7 +232,12 @@
     <None Include="Resources\selection remembering form toolbar bmp.bmp" />
     <None Include="Resources\about form icon.PNG" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\MarkdownToHtml\MarkdownToHtml.csproj">
+      <Project>{814c4cd0-c92a-44db-8bb4-ccf13882012f}</Project>
+      <Name>MarkdownToHtml</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Condition="Exists($(PkgUnmanagedExports_Repack_Upgrade))" Project="$(PkgUnmanagedExports_Repack_Upgrade)\build\UnmanagedExports.Repack.Upgrade.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
