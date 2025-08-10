@@ -6,20 +6,12 @@ namespace NppDemo.Forms
     partial class MarkdownRenderForm
     {
 
-        private System.Windows.Forms.Button btnTest;
-        private System.Windows.Forms.Button button1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private ToolStripButton goButton;
-        private ToolStrip toolStrip1;
-        private WebView2 webView2;
-        private Label debugLabel;
+        private System.ComponentModel.IContainer components = null;
+        private SplitContainer splitContainer;
+        private TreeView treeViewHeaders;
+        private WebView2 webView;
 
         private ToolStripStatusLabel toolStripStatusLabel1;
-
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -27,9 +19,10 @@ namespace NppDemo.Forms
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing)
             {
-                components.Dispose();
+                this.components?.Dispose();
+                this.webView?.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -42,66 +35,53 @@ namespace NppDemo.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.goButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.webView2 = new Microsoft.Web.WebView2.WinForms.WebView2();
-            this.SuspendLayout();
+            this.components = new System.ComponentModel.Container();
+            this.splitContainer = new SplitContainer();
+            this.treeViewHeaders = new TreeView();
+            this.webView = new WebView2();
+
+            // splitContainer
+            this.splitContainer.Dock = DockStyle.Fill;
+            this.splitContainer.FixedPanel = FixedPanel.Panel1;
+            this.splitContainer.IsSplitterFixed = false;
+            this.splitContainer.Name = "splitContainer";
+            this.splitContainer.TabIndex = 0;
+            this.splitContainer.SplitterDistance = 260; // adjust as needed
+
+            // treeViewHeaders (left pane)
+            this.treeViewHeaders.Dock = DockStyle.Fill;
+            this.treeViewHeaders.FullRowSelect = true;
+            this.treeViewHeaders.HideSelection = false;
+            this.treeViewHeaders.Name = "treeViewHeaders";
+            this.treeViewHeaders.TabIndex = 0;
+
             //
             // webView2
             //
-            this.webView2.AllowExternalDrop = true;
-            this.webView2.CreationProperties = null;
-            this.webView2.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.webView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webView2.Location = new System.Drawing.Point(0, 0);
-            this.webView2.Name = "webView2";
-            this.webView2.Size = new System.Drawing.Size(800, 450);
-            this.webView2.Visible = true;
-            this.webView2.TabIndex = 0;
-            this.webView2.ZoomFactor = 1D;
+            this.webView.AllowExternalDrop = true;
+            this.webView.CreationProperties = null;
+            this.webView.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.webView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webView.Location = new System.Drawing.Point(0, 0);
+            this.webView.Name = "webView2";
+            this.webView.Size = new System.Drawing.Size(800, 450);
+            this.webView.Visible = true;
+            this.webView.TabIndex = 0;
+            this.webView.ZoomFactor = 1D;
+            // Note: CoreWebView2 initialization should be done in runtime code (e.g. Form_Load)
 
-            // In your Designer.cs, add a label for debugging
-            this.debugLabel = new System.Windows.Forms.Label();
-            this.debugLabel.Text = "Form is visible";
-            this.debugLabel.BackColor = System.Drawing.Color.Red;
-            this.debugLabel.Location = new System.Drawing.Point(0, 0);
-            this.debugLabel.Size = new System.Drawing.Size(150, 20);
-            this.debugLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Controls.Add(this.debugLabel);
-            this.debugLabel.BringToFront(); // Ensure it's on top
+            // assemble
+            this.splitContainer.Panel1.Controls.Add(this.treeViewHeaders);
+            this.splitContainer.Panel2.Controls.Add(this.webView);
 
-            // 
-            // goButton
-            // 
-            this.goButton.Name = "goButton";
-            this.goButton.Size = new System.Drawing.Size(26, 22);
-            this.goButton.Text = "Go";
-            this.goButton.Click += new System.EventHandler(this.goButton_Click);
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.goButton});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(948, 25);
-            this.toolStrip1.TabIndex = 2;
-            // 
-            // MarkdownRenderForm
-            // 
-            this.ClientSize = new System.Drawing.Size(948, 478);
-            this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.webView2);
-            this.Name = "MarkdownRenderForm";
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            this.Controls.Add(this.splitContainer);
+            this.Name = "MarkdownPreviewForm";
+            this.Text = "Markdown Preview";
 
+            // optional: minimal size
+            this.MinimumSize = new System.Drawing.Size(640, 360);
         }
 
-        #endregion
-
     }
+    #endregion
 }

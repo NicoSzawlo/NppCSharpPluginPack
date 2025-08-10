@@ -81,6 +81,9 @@
     <PackageReference Include="Microsoft.Web.WebView2">
       <Version>1.0.3351.48</Version>
     </PackageReference>
+    <PackageReference Include="Prism.Core">
+      <Version>9.0.537</Version>
+    </PackageReference>
     <PackageReference Include="UnmanagedExports.Repack.Upgrade" Version="1.2.1" GeneratePathProperty="true">
       <ExcludeAssets>all</ExcludeAssets>
     </PackageReference>
@@ -153,6 +156,7 @@
     <Compile Include="Tests\SliceTests.cs" />
     <Compile Include="Tests\UserInterfaceTests.cs" />
     <Compile Include="Tests\TestRunner.cs" />
+    <Compile Include="Utils\EditorEvents.cs" />
     <!-- other utilities -->
     <Compile Include="Utils\FormStyle.cs" />
     <Compile Include="Utils\ArrayExtensions.cs" />

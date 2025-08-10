@@ -1,8 +1,9 @@
 ﻿// NPP plugin platform for .Net v0.94.00 by Kasper B. Graversen etc.
+using Kbg.NppPluginNET.PluginInfrastructure;
+using NppDemo.Utils;
+using RGiesecke.DllExport;
 using System;
 using System.Runtime.InteropServices;
-using Kbg.NppPluginNET.PluginInfrastructure;
-using RGiesecke.DllExport;
 
 namespace Kbg.NppPluginNET
 {
@@ -43,23 +44,20 @@ namespace Kbg.NppPluginNET
             return _ptrPluginName;
         }
 
-        [DllExport(CallingConvention = CallingConvention.Cdecl)]
-        static void beNotified(IntPtr notifyCode)
+        [DllExport(CallingConvention = CallingConvention.StdCall)]
+        public static void beNotified(IntPtr notifyCode)
         {
             ScNotification notification = (ScNotification)Marshal.PtrToStructure(notifyCode, typeof(ScNotification));
-            if (notification.Header.Code == (uint)NppMsg.NPPN_TBMODIFICATION)
+
+            if (notification.Header.Code == (uint)SciMsg.SCN_MODIFIED)
             {
-                PluginBase._funcItems.RefreshItems();
-                Main.SetToolBarIcons();
-            }
-            else if (notification.Header.Code == (uint)NppMsg.NPPN_SHUTDOWN)
-            {
-                Main.PluginCleanUp();
-                Marshal.FreeHGlobal(_ptrPluginName);
-            }
-            else
-            {
-	            Main.OnNotification(notification);
+                const int SC_MOD_INSERTTEXT = 0x1;
+                const int SC_MOD_DELETETEXT = 0x2;
+
+                if ((notification.ModificationType & (SC_MOD_INSERTTEXT | SC_MOD_DELETETEXT)) != 0)
+                {
+                    EditorEvents.RaiseEditorTextChanged();
+                }
             }
         }
     }
